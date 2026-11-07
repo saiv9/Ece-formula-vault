@@ -366,6 +366,7 @@
         const active = button.dataset.year === 'all'; button.classList.toggle('active', active);
         button.setAttribute('aria-pressed', String(active));
       });
+      
     }
     renderAll();
   });
