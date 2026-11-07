@@ -31,16 +31,6 @@ python -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Deploy on GitHub Pages
-
-1. Create a new GitHub repository.
-2. Upload **all files and folders** from this project. Keep `index.html` at the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select branch `main` and folder `/ (root)`, then save.
-6. Open the Pages URL GitHub displays after deployment.
-
-No API key, login, database, build step or paid hosting is required. The page is static; do not move `index.html` into a subfolder unless you also update its relative asset paths.
 
 ## Validate before publishing
 
