@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="A searchable four-year ECE formula library organised by year, subject and unit.">
+  <title>ECE Formula Vault — Search every unit</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="ECE Formula Vault home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="brand-copy"><strong>ECE<span> / </span>VAULT</strong><small>THE FORMULA LIBRARY</small></span>
+    </a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#library">Library</a>
+      <a class="nav-link" href="#sources">Sources</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg>
+      </button>
+      <button class="saved-toggle" id="savedToggle" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+        <span>Saved</span><b id="savedCount">0</b>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> FOUR YEARS · ONE REFERENCE</div>
+        <h1>Find the formula.<br><em>Understand the unit.</em></h1>
+        <p>ECE subjects, unit-wise equations and quick notes — organised to make revision faster.</p>
+        <div class="hero-meta">
+          <span class="curriculum-tag">JNTUH R25 · ECE</span>
+          <span id="heroStats">Loading catalogue…</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="orbit-dot dot-one"></div><div class="orbit-dot dot-two"></div>
+        <div class="orbit-dot dot-three"></div>
+        <div class="formula-tile tile-one">V = IR</div>
+        <div class="formula-tile tile-two">H(s) = Y(s) / X(s)</div>
+        <div class="formula-tile tile-three">f₀ = 1 / 2π√LC</div>
+        <div class="core-chip"><span>ECE</span><b>∑</b></div>
+      </div>
+    </section>
+
+    <section class="library-section" id="library">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">THE LIBRARY</div>
+          <h2>Explore your subjects</h2>
+        </div>
+        <div class="catalog-count" id="catalogCount">— subjects</div>
+      </div>
+
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search subject, unit, formula or equation…" aria-label="Search subjects, units and formulas">
+        <kbd class="search-shortcut">/</kbd>
+        <button id="clearSearch" class="clear-search" type="button" aria-label="Clear search" hidden>×</button>
+      </div>
+      <div class="search-hint" id="searchHint">Try “Fourier”, “Unit III”, “BJT” or “Shannon capacity”.</div>
+
+      <div class="filter-row">
+        <div class="year-filters" role="group" aria-label="Filter by year">
+          <button class="filter-chip active" data-year="all" type="button">All years</button>
+          <button class="filter-chip" data-year="1" type="button">01 <span>Year</span></button>
+          <button class="filter-chip" data-year="2" type="button">02 <span>Year</span></button>
+          <button class="filter-chip" data-year="3" type="button">03 <span>Year</span></button>
+          <button class="filter-chip" data-year="4" type="button">04 <span>Year</span></button>
+        </div>
+        <div class="filter-controls">
+          <label class="select-wrap" for="semesterFilter"><span>Semester</span>
+            <select id="semesterFilter">
+              <option value="all">All semesters</option>
+              <option value="Semester I">Semester I</option>
+              <option value="Semester II">Semester II</option>
+            </select>
+          </label>
+          <button id="resetFilters" class="text-button" type="button">Reset filters</button>
+        </div>
+      </div>
+
+      <div class="workspace" id="workspace">
+        <aside class="subject-panel" aria-label="Subject results">
+          <div class="panel-heading">
+            <div><span class="panel-label">SUBJECT INDEX</span><strong id="subjectResultsTitle">All subjects</strong></div>
+            <span class="result-badge" id="subjectResultCount">0</span>
+          </div>
+          <div class="subject-list" id="subjectList" aria-live="polite">
+            <div class="loading-state">Loading your formula library…</div>
+          </div>
+          <div class="panel-footnote">Select a subject to browse its units.</div>
+        </aside>
+
+        <section class="detail-panel" id="detailPanel" aria-label="Selected subject formulas">
+          <div class="empty-detail" id="emptyDetail">
+            <div class="empty-illustration"><span>ƒ</span><i></i><b></b></div>
+            <div class="section-kicker">READY WHEN YOU ARE</div>
+            <h3>Choose a subject to begin</h3>
+            <p>Browse by year or search for a topic. Every subject opens into its unit-wise formula sheet.</p>
+            <div class="empty-tips"><span><b>01</b> Select a year</span><span><b>02</b> Choose a subject</span><span><b>03</b> Pick a unit</span></div>
+          </div>
+          <div id="subjectDetail" hidden>
+            <div class="detail-header">
+              <div class="detail-title-wrap">
+                <div class="detail-overline" id="detailOverline">ECE CORE · YEAR 1</div>
+                <h3 id="detailTitle">Subject title</h3>
+                <p id="detailMeta">Course code · Semester</p>
+              </div>
+              <div class="detail-actions">
+                <button class="icon-button detail-save" id="detailSave" type="button" aria-label="Save subject" title="Save subject">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+                </button>
+                <button class="outline-button" id="printUnit" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></svg> Print</button>
+              </div>
+            </div>
+            <div class="subject-note" id="subjectNote" hidden></div>
+            <div class="unit-section-head"><div><span class="panel-label">UNIT SELECTOR</span><strong>Choose a unit</strong></div><span class="unit-total" id="unitTotal">5 units</span></div>
+            <div class="unit-grid" id="unitGrid"></div>
+            <div class="formula-toolbar">
+              <div><div class="panel-label" id="selectedUnitLabel">UNIT 01</div><h4 id="selectedUnitTitle">Unit title</h4><p id="selectedUnitTopics">Topics covered in this unit.</p></div>
+              <span class="formula-count" id="formulaCount">0 formulas</span>
+            </div>
+            <div class="formula-list" id="formulaList"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="source-section" id="sources">
+      <div class="source-card">
+        <div class="source-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h5M9 13h6M9 17h6"/></svg></div>
+        <div class="source-copy"><div class="section-kicker">CURRICULUM BASIS</div><h3>Built around the JNTUH R25 ECE structure</h3><p>Core subjects and semester placement follow the published constituent-college course structure for the 2025–26 batch. The formula cards are a curated study aid; confirm college-specific electives, detailed unit wording and sign conventions with your prescribed syllabus and textbook.</p><div class="source-links"><a href="https://jntuhces.ac.in/web/notifications/153_R25%20B.Tech%20%20ECE%20%20Course%20Structure%20and%20Syllabus.pdf" target="_blank" rel="noopener">Official JNTUH R25 ECE syllabus <span>↗</span></a><a href="https://www.aicte.gov.in/sites/default/files/Final_ECE.pdf" target="_blank" rel="noopener">AICTE ECE model curriculum <span>↗</span></a><a href="https://jntuh.ac.in/syllabus" target="_blank" rel="noopener">JNTUH syllabus portal <span>↗</span></a></div></div>
+      </div>
+      <div class="accuracy-note"><span>!</span><p><strong>Accuracy note:</strong> Formula cards show standard textbook relations with stated assumptions where needed. Some device equations depend on operating region, component model, sign convention or datasheet; do not apply a formula outside its listed conditions.</p></div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>ECE / FORMULA VAULT</span><span>Made for focused revision · No account required</span><a href="#top">Back to top ↑</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/catalog.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
