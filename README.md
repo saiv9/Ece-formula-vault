@@ -1,7 +1,7 @@
 # ECE Formula Vault
 
 A no-login, static ECE formula library organised as **Year → Subject → Unit → Formula**. It is designed for GitHub Pages and works without a server-side backend.
-[🌐 Live Demo](https://saiv9.github.io/Ece-formula-bank/)
+[🌐 Live Demo](https://saiv9.github.io/Ece-formula-vault/)
 ## What's included
 
 - 62 theory subjects from the JNTUH R25 B.Tech ECE course structure: required theory courses and the professional/open elective choices listed in that structure.
